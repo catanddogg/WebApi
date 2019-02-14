@@ -1,4 +1,5 @@
 ﻿using IllyaVirych.Web.Models;
+using IllyaVirych.Web.Service;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,68 +13,46 @@ namespace IllyaVirych.Web.Controllers
 {
     public class TaskController : ApiController
     {
-        TaskItemContext db = new TaskItemContext(); 
-        // GET api/values
-        public IEnumerable<TaskItem> GetTaskItems()
+        UnitOfWork unitOfWork;
+
+        public TaskController()
         {
-            return db.TaskItems;
+            unitOfWork = new UnitOfWork();
         }
 
-        ObservableCollection<TaskItem> Items = new ObservableCollection<TaskItem>
-            {
-                new TaskItem { Id = 1, NameTask = "Illya", DescriptionTask = "Go", StatusTask = true, LalitudeMarker = 40, LongitudeMarker = 40, UserId = "101010"}
-            };
-
-
+        [HttpGet]
         // GET api/task/5
-        public TaskItem GetTaskItem(string userId)
+        public IEnumerable<TaskItem> GetTaskItem(string id)
         {
-            ObservableCollection<TaskItem> Items = new ObservableCollection<TaskItem>
-            {
-                new TaskItem { Id = 1, NameTask = "Illya", DescriptionTask = "Go", StatusTask = true, LalitudeMarker = 40, LongitudeMarker = 40, UserId = "101010"}
-            };
-            db.TaskItems.AddRange(Items);
-            db.SaveChanges();
-            var product = Items.FirstOrDefault((p) => p.UserId == userId);
-            if (product == null)
-            {
-                return null;
-            }
-            //TaskItem taskItem = db.TaskItems.Find(userId);
-            return product;
-          
+            var taskItem = unitOfWork.Tasks.GetItem(id);
+            return taskItem;
         }
 
         [HttpPost]
         // POST api/task
         public void CreateTask([FromBody]TaskItem taskItem)
         {
-
-            db.TaskItems.Add(taskItem);
-            db.SaveChanges();
+            unitOfWork.Tasks.CreateItem(taskItem);
         }
 
         [HttpPut]
-        // PUT api/values/5
-        public void EditTask(int id, [FromBody]TaskItem taskItem)
+        // PUT api/task/5
+        public void UpdateTask(int id, [FromBody]TaskItem taskItem)
         {
-            if(id == taskItem.Id)
-            {
-                db.Entry(taskItem).State = EntityState.Modified;
-                db.SaveChanges();
-            }
+            unitOfWork.Tasks.UpdateItem(id, taskItem);
         }
 
         [HttpDelete]
-        // DELETE api/values/5
+        // DELETE api/task/5
         public void DeleteTask(int id)
         {
-            TaskItem taskItem = db.TaskItems.Find(id);
-            if(taskItem != null)
-            {
-                db.TaskItems.Remove(taskItem);
-                db.SaveChanges();
-            }
+            unitOfWork.Tasks.DeleteItem(id);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            //unitOfWork.Dispose();
+            base.Dispose(disposing);
         }
     }
 }
