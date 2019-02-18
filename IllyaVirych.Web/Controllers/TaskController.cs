@@ -20,7 +20,7 @@ namespace IllyaVirych.Web.Controllers
             unitOfWork = new UnitOfWork();
         }
 
-        [HttpGet]
+        //[HttpGet]
         // GET api/task/5
         public IEnumerable<TaskItem> GetTaskItem(string id)
         {
@@ -49,10 +49,10 @@ namespace IllyaVirych.Web.Controllers
             unitOfWork.Tasks.DeleteItem(id);
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            //unitOfWork.Dispose();
-            base.Dispose(disposing);
-        }
+        //protected override void Dispose(bool disposing)
+        //{
+        //    unitOfWork.Dispose();
+        //    base.Dispose(disposing);
+        //}
     }
 }

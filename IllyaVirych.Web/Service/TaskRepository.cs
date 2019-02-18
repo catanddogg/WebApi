@@ -34,11 +34,11 @@ namespace IllyaVirych.Web.Service
 
         public void UpdateItem(int id, TaskItem item)
         {
-            if (id == item.Id)
-            {
+            //if (id == item.Id)
+            //{
                 _db.Entry(item).State = EntityState.Modified;
                 _db.SaveChanges();
-            }
+            //}
         }
 
         public IEnumerable<TaskItem> GetItem(string id)
