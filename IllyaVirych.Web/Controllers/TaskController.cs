@@ -1,4 +1,6 @@
-﻿using IllyaVirych.Web.Models;
+﻿using IllyaVirych.Web.Interface;
+using IllyaVirych.Web.Models;
+using IllyaVirych.Web.Repository;
 using IllyaVirych.Web.Service;
 using System;
 using System.Collections.Generic;
@@ -13,18 +15,18 @@ namespace IllyaVirych.Web.Controllers
 {
     public class TaskController : ApiController
     {
-        UnitOfWork unitOfWork;
+        private ITaskService _taskService;        
 
-        public TaskController()
+        public TaskController(ITaskService taskService)
         {
-            unitOfWork = new UnitOfWork();
+            _taskService = taskService; 
         }
 
-        //[HttpGet]
+        [HttpGet]
         // GET api/task/5
         public IEnumerable<TaskItem> GetTaskItem(string id)
         {
-            var taskItem = unitOfWork.Tasks.GetItem(id);
+            var taskItem = _taskService.Tasks.GetItem(id);
             return taskItem;
         }
 
@@ -32,27 +34,21 @@ namespace IllyaVirych.Web.Controllers
         // POST api/task
         public void CreateTask([FromBody]TaskItem taskItem)
         {
-            unitOfWork.Tasks.CreateItem(taskItem);
+            _taskService.Tasks.Create(taskItem);
         }
 
         [HttpPut]
         // PUT api/task/5
-        public void UpdateTask(int id, [FromBody]TaskItem taskItem)
+        public void UpdateTask(int id,[FromBody]TaskItem taskItem)
         {
-            unitOfWork.Tasks.UpdateItem(id, taskItem);
+            _taskService.Tasks.Update(taskItem);
         }
 
         [HttpDelete]
         // DELETE api/task/5
         public void DeleteTask(int id)
         {
-            unitOfWork.Tasks.DeleteItem(id);
+            _taskService.Tasks.Delete(id);
         }
-
-        //protected override void Dispose(bool disposing)
-        //{
-        //    unitOfWork.Dispose();
-        //    base.Dispose(disposing);
-        //}
     }
 }

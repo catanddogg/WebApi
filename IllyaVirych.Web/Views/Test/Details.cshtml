@@ -1,0 +1,67 @@
+﻿@model IllyaVirych.Web.Models.TaskItem
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/_ViewStart.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TaskItem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NameTask)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameTask)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescriptionTask)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescriptionTask)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StatusTask)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StatusTask)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LalitudeMarker)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LalitudeMarker)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LongitudeMarker)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LongitudeMarker)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
