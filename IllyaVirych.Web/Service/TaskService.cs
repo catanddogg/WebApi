@@ -1,14 +1,13 @@
 ﻿using IllyaVirych.Web.Interface;
 using IllyaVirych.Web.Models;
 using System;
+using System.Collections.Generic;
 
 namespace IllyaVirych.Web.Service
 {
-    public class TaskService : IDisposable, ITaskService
+    public class TaskService : ITaskService<TaskItem>
     {
         private TaskItemContext _db = new TaskItemContext();
-        
-        private bool disposed = false;
         
         private readonly ITaskRepository _taskRepository;
 
@@ -17,30 +16,25 @@ namespace IllyaVirych.Web.Service
             _taskRepository = taskRepository;
         }
 
-        public ITaskRepository Tasks
+        public IEnumerable<TaskItem> GetItem(string id)
         {
-            get
-            {
-                return _taskRepository;
-            }
+            var res = _taskRepository.GetItem(id);
+            return res;
         }
 
-        public virtual void Dispose(bool disposing)
+        public void Create(TaskItem taskItem)
         {
-            if (!this.disposed)
-            {
-                if (disposing)
-                {
-                    _db.Dispose();
-                }
-                this.disposed = true;
-            }
+            _taskRepository.Create(taskItem);
         }
 
-        public void Dispose()
+        public void Delete(int id)
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            _taskRepository.Delete(id);
+        }
+
+        public void Update(TaskItem taskItem)
+        {
+            _taskRepository.Update(taskItem);
         }
     }
 }

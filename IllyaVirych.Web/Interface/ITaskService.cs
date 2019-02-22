@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IllyaVirych.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace IllyaVirych.Web.Interface
 {
-    public interface ITaskService
+    public interface ITaskService<T> where T : class
     {
-         ITaskRepository Tasks { get;  }
+        IEnumerable<TaskItem> GetItem(string id);
+        void Create(T entity);
+        void Delete(int id);
+        void Update(T entity);
     }
 }

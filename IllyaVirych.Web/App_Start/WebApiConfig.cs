@@ -25,7 +25,7 @@ namespace IllyaVirych.Web
             builder.RegisterType<TaskController>();
             //builder.RegisterType<TaskRepository>().As<ITaskRepository>(); //EF
             builder.RegisterType<DapperTaskRepository>().As<ITaskRepository>(); //Dapper
-            builder.RegisterType<TaskService>().As<ITaskService>();
+            builder.RegisterType<TaskService>().As<ITaskService<TaskItem>>();
             var container = builder.Build();
             var resolver = new AutofacWebApiDependencyResolver(container);
             GlobalConfiguration.Configuration.DependencyResolver = resolver;

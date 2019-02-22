@@ -15,9 +15,9 @@ namespace IllyaVirych.Web.Controllers
 {
     public class TaskController : ApiController
     {
-        private ITaskService _taskService;        
+        private ITaskService<TaskItem> _taskService;        
 
-        public TaskController(ITaskService taskService)
+        public TaskController(ITaskService<TaskItem> taskService)
         {
             _taskService = taskService; 
         }
@@ -26,7 +26,7 @@ namespace IllyaVirych.Web.Controllers
         // GET api/task/5
         public IEnumerable<TaskItem> GetTaskItem(string id)
         {
-            var taskItem = _taskService.Tasks.GetItem(id);
+            var taskItem = _taskService.GetItem(id);
             return taskItem;
         }
 
@@ -34,21 +34,21 @@ namespace IllyaVirych.Web.Controllers
         // POST api/task
         public void CreateTask([FromBody]TaskItem taskItem)
         {
-            _taskService.Tasks.Create(taskItem);
+            _taskService.Create(taskItem);
         }
 
         [HttpPut]
         // PUT api/task/5
         public void UpdateTask(int id,[FromBody]TaskItem taskItem)
         {
-            _taskService.Tasks.Update(taskItem);
+            _taskService.Update(taskItem);
         }
 
         [HttpDelete]
         // DELETE api/task/5
         public void DeleteTask(int id)
         {
-            _taskService.Tasks.Delete(id);
+            _taskService.Delete(id);
         }
     }
 }
