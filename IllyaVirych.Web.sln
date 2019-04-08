@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IllyaVirych.Web", "IllyaVirych.Web\IllyaVirych.Web.csproj", "{FAAF265C-CDEE-434C-B262-DB26D8339EB2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IllyaVirych.Web.Core", "IllyaVirych.Web.Core\IllyaVirych.Web.Core.csproj", "{C77681FA-A715-47B3-A93F-9C7CD63B2509}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{FAAF265C-CDEE-434C-B262-DB26D8339EB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAAF265C-CDEE-434C-B262-DB26D8339EB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAAF265C-CDEE-434C-B262-DB26D8339EB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C77681FA-A715-47B3-A93F-9C7CD63B2509}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C77681FA-A715-47B3-A93F-9C7CD63B2509}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C77681FA-A715-47B3-A93F-9C7CD63B2509}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C77681FA-A715-47B3-A93F-9C7CD63B2509}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

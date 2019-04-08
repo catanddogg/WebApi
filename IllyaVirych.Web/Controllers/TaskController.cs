@@ -48,7 +48,7 @@ namespace IllyaVirych.Web.Controllers
         // DELETE api/task/5
         public void DeleteTask(int id)
         {
-            _taskService.Delete(id);
+             _taskService.Delete(id);
         }
     }
 }
