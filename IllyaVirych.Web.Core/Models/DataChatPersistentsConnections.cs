@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Threading.Tasks;
 
-namespace IllyaVirych.Web.Models
+namespace IllyaVirych.Web.Core.Models
 {
-    public class Data
+    public class DataChatPersistentsConnections
     {
         public string Name { get; set; }
         public string Message { get; set; }
